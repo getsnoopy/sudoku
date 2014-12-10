@@ -1,0 +1,635 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"K12",
+				"K12Event"
+			],
+			[
+				"ma",
+				"maxPosterDim"
+			],
+			[
+				"tt",
+				"text-align"
+			],
+			[
+				"count",
+				"counter-increment"
+			],
+			[
+				"html",
+				"htmlentities"
+			],
+			[
+				"error",
+				"error_reporting"
+			],
+			[
+				"rec",
+				"rec_v"
+			],
+			[
+				"sta",
+				"state"
+			],
+			[
+				"calle",
+				"caller_v"
+			],
+			[
+				"fade",
+				"fadeIn"
+			],
+			[
+				"tran",
+				"transaction-form"
+			],
+			[
+				"create",
+				"createTransaction"
+			],
+			[
+				"tra",
+				"transaction"
+			],
+			[
+				"trans",
+				"transaction"
+			],
+			[
+				"transacti",
+				"transactionList"
+			],
+			[
+				"transac",
+				"transaction-view"
+			],
+			[
+				"http_bu",
+				"http_build_query"
+			],
+			[
+				"message",
+				"message-text"
+			],
+			[
+				"auth",
+				"authToken"
+			],
+			[
+				"read",
+				"readCookie"
+			],
+			[
+				"k-12",
+				"k-12-contact"
+			],
+			[
+				"k",
+				"k-12-contact"
+			],
+			[
+				"k-12-",
+				"k-12-goto"
+			],
+			[
+				"part",
+				"partnerUserSecret"
+			],
+			[
+				"partner",
+				"partnerPassword"
+			],
+			[
+				"event",
+				"event_types"
+			],
+			[
+				"getType",
+				"getTypePlural"
+			],
+			[
+				"text",
+				"text-indent"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"booked",
+				"booked_days"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 150.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Varun/Documents/GitHub/sudoku"
+	],
+	"file_history":
+	[
+		"/C/Users/Varun/Documents/GitHub/sudoku/.gitignore",
+		"/C/Users/Varun/Documents/GitHub/sudoku/index.html",
+		"/C/Users/Varun/Desktop/jquery-2.1.1.js",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/config.php",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/index.php",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/visit.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/views/tools/layouts/master.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/views/tools/layouts/login.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/config/local/app.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/css/tools/main.css",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/views/tools/event/k-12/add.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/views/tools/event/k-12/modify.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/views/tools/event/modify.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/views/tools/event/list.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/views/tools/event/k-12/list.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/app/views/tools/event/create.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/ds_reports/admin/js/main.js",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/css/main.css",
+		"/C/Users/Varun/Desktop/xampp/htdocs/fiske/js/fwt.js",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/vendor/laravel/framework/src/Illuminate/Auth/Guard.php",
+		"/C/Users/Varun/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Varun/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/user/list.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/controllers/UserController.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Auth/User.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/user/create.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/user/modify.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/event/k-12/add.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/event/modify.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/controllers/StaticsController.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/event/k-12/modify.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/config/app.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/providers/Auth/AuthServiceProvider.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/facades/Auth/TheUser.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/filters.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/facades/Auth/Permission.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/composer.json",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/config/auth.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/User.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/controllers/EventController.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/controllers/K12EventController.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/layouts/login.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/controllers/AppController.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/event/k-12/list.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Events/K12/Event.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/ds_reports/app/views/bug/list.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/event/create.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Events/Event.php",
+		"/C/Users/Varun/Desktop/icomoon/style.css",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Events/K12/Type.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/vendor/symfony/http-foundation/Symfony/Component/HttpFoundation/File/File.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/event/list.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/ds_reports/app/controllers/BugController.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/ds_reports/app/routes.php",
+		"/C/Users/Varun/Desktop/xampp/php/php.ini",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/tools/layouts/master.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/event/list.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/event/modify.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/home.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/layouts/master.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/layouts/login.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/ds_reports/app/views/bug/finish.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Events/Audience.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Events/Showtime.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Events/Type.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Event/Event.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Event.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Type.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Showtime.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/models/Audience.php",
+		"/C/Users/Varun/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
+		"/C/Users/Varun/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Varun/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Varun/Downloads/icomoon (1)/style.css",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/vendor/laravel/framework/src/Illuminate/Html/FormBuilder.php",
+		"/C/Users/Varun/Downloads/icomoon/style.css",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/vendor/autoload.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/statics/backups.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/statics/log.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/ds_reports/admin/css/main.css",
+		"/C/Users/Varun/Desktop/xampp/htdocs/ds_reports/app/views/bug/new.php",
+		"/C/Users/Varun/Desktop/laravel-4.1.27/laravel-4.1.27/app/models/User.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/.env.local.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/.env.php",
+		"/C/Users/Varun/Desktop/laravel-master/laravel-master/app/models/User.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/humans.txt",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/views/static/log.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/css/main.css",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/app/routes.php",
+		"/C/Users/Varun/Desktop/xampp/htdocs/tools/index.php",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/img/fiske-black.svg",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/img/fiske_modified.svg",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/img/fiske.svg",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/css/normalize.css",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/cosmos.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/cis.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/donate.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/education.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/index.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/newfiske.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/studio.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/subscribe.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/test.html",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/visit.html",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1393429788/mapped/web/fiske/htdocs/tools2/style.css",
+		"/C/Users/Varun/Desktop/Fiske Design/Mockup/img/fiske_black.svg",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401418404/mapped/web/fiske/htdocs/ds_reports/admin/index.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401903324/origins/web/htdocs/lunar/~jaburns/hidden/template-blocks/CourseScheduleContentBlock.txt",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401903388/origins/web/htdocs/lunar/~jaburns/hidden/template-blocks/GoogleCalendarAgendaContentBlock.txt",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401903919/origins/web/htdocs/lunar/~jaburns/hidden/template-blocks/CourseDescriptionContentBlock.txt",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401903618/origins/web/htdocs/lunar/~jaburns/tools/courses.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401904852/origins/web/htdocs/lunar/~jaburns/hidden/config.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401904961/origins/web/htdocs/lunar/~jaburns/hidden/classes/contentblocks/Astr2020CourseDescriptionContentBlock.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401906031/origins/web/htdocs/lunar/~jaburns/hidden/classes/contentblocks/Astr1020CourseDescriptionContentBlock.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401906099/origins/web/htdocs/lunar/~jaburns/hidden/classes/contentblocks/Astr4800CourseDescriptionContentBlock.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401906163/origins/web/htdocs/lunar/~jaburns/hidden/classes/contentblocks/Astr5835CourseDescriptionContentBlock.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401906212/origins/web/htdocs/lunar/~jaburns/hidden/classes/contentblocks/Astr6000CourseDescriptionContentBlock.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401904643/origins/web/htdocs/lunar/~jaburns/hidden/classes/ContentBlockIterator.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401903986/origins/web/htdocs/lunar/~jaburns/hidden/classes/AbstractContentBlock.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401905072/origins/web/htdocs/lunar/~jaburns/hidden/classes/contentblocks/Astr2020GalleryContentBlock.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401905328/origins/web/htdocs/lunar/~jaburns/hidden/default-course-content/index.php.txt",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401905027/origins/web/htdocs/lunar/~jaburns/hidden/classes/contentblocks/Astr2020GoogleCalendarAgendaContentBlock.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401904597/origins/web/htdocs/lunar/~jaburns/hidden/classes/ContentBlockIterator.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401903807/origins/web/htdocs/lunar/~jaburns/hidden/default-course-content/index.php.txt",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401903505/origins/web/htdocs/lunar/~jaburns/hidden/classes/Course.php",
+		"/C/users/varun/appdata/local/temp/sublime-sftp-browse-1401903410/origins/web/htdocs/lunar/~jaburns/hidden/template-blocks/CourseDescriptionContentBlock.txt",
+		"/C/Users/Varun/Desktop/SynCOMAPIv1_0/Samples/SynView/MainFrm.cpp",
+		"/C/Users/Varun/Desktop/SynCOMAPIv1_0/Samples/SynView/ChildView.cpp"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"*.html,C:\\Users\\Varun\\Desktop\\Fiske Design\\Mockup",
+			"*.java,C:\\Users\\Varun\\Desktop\\Fiske Design\\Mockup",
+			"*.java,C:\\Users\\Varun\\git\\InherentGames\\InherentGames",
+			"*.xml,C:\\Users\\Varun\\git\\InherentGames\\InherentGames",
+			"*.html,C:\\Users\\Varun\\Desktop\\Fiske Design\\Mockup",
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"$",
+			"img",
+			"tools/",
+			"im",
+			"img",
+			"View",
+			"UserController",
+			"user",
+			"user_id",
+			"need",
+			"modifyform",
+			"createform",
+			"fresh",
+			"show",
+			"event",
+			"table",
+			"delete",
+			"submit",
+			".button",
+			"realpath",
+			"gettargetfile",
+			".dll",
+			"route",
+			"!important",
+			"table",
+			"FP",
+			"form ",
+			"ctrl+e",
+			"p",
+			"#toggle",
+			".login",
+			"606",
+			"label",
+			"form ",
+			"div",
+			"a",
+			"2",
+			"form ",
+			"form",
+			"submit",
+			"]",
+			"$config[",
+			" = ",
+			";",
+			"target=\"_blank\"",
+			"transition",
+			"-webkit-trans",
+			"html",
+			"a#logo:",
+			"a#logo",
+			"print",
+			".svg",
+			".svvg",
+			"#ffffff",
+			".svg",
+			"#000000",
+			"#content .grid > .width",
+			"#content .grid",
+			".svg",
+			"media print",
+			"fiske-header {",
+			"fiske-header",
+			"64em",
+			"cu-header",
+			"cu-hear",
+			"<a href=\"http://www.colorado.edu\" rel=\"external\"><img src=\"img/ucb.svg\" alt=\"University of Colorado Boulder\" /></a>",
+			"select",
+			"ellips",
+			"( yet )",
+			"mont",
+			"#ffffff",
+			" class=\"error\"",
+			"ret",
+			"success",
+			"FFFFFF",
+			"F07568",
+			"fill=\"#",
+			"fill=\"",
+			"color",
+			"showtimes",
+			"$showtimes",
+			"http://ajax.googleapis.com",
+			";?",
+			"textarea",
+			" class=\"icon-append icon-asterisk\"",
+			"clearError",
+			"alert",
+			"read",
+			"readcookie",
+			".sticky",
+			"sticky",
+			"12",
+			"updateHeader",
+			"type-",
+			"  ",
+			"specific-event",
+			"poster",
+			"notice",
+			"selectmap",
+			"->public",
+			"addd",
+			"create",
+			"iter",
+			"events.php",
+			"title",
+			"20px",
+			".carousel",
+			"$title",
+			"events",
+			"here",
+			"ID",
+			"date_conversion",
+			"public",
+			"audienceLabel",
+			"bool",
+			"  ",
+			"background-size",
+			"html ",
+			"html",
+			"ucb.png",
+			"matrix",
+			"transform",
+			"transition",
+			"meta",
+			"transition",
+			"text-over",
+			"#content .grid > .width-2-3",
+			"calendar"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"MailController",
+			"mail",
+			"mail_id",
+			"modifyForm",
+			"createForm",
+			"modifyForm",
+			"user",
+			"#content table",
+			"FWT",
+			".toggle",
+			"",
+			" => ",
+			",",
+			"rel=\"external\"",
+			"#000000",
+			"#ffffff",
+			"<a href=\"http://www.colorado.edu\" rel=\"external\">University of Colorado Boulder</a>",
+			"(yet)",
+			"#000000",
+			"",
+			"A5A7A9",
+			"FFFFD0",
+			"//ajax.googleapis.com",
+			"; ?",
+			"",
+			"clearMessage",
+			" ",
+			"added",
+			"add",
+			"iter_diff",
+			"k-12.php",
+			" ",
+			"ucb.svg",
+			"0.2",
+			".2",
+			" ",
+			"()",
+			"\\1 )",
+			"( \\1",
+			"#menu",
+			"#",
+			":",
+			"#",
+			"#content",
+			"#container ",
+			"<li><a",
+			"http://html5shiv.googlecode.com/svn/trunk/html5.js",
+			"$options['date']",
+			"->options['public']",
+			"$populated_events",
+			"<?php echo $self_basename; ?>?",
+			"<?php echo $self_basename; ?>",
+			" ",
+			"720-663-0786",
+			"Fiske will be provisionally open on 1/31/2014",
+			"",
+			"<script src=\"js/vendor/modernizr.min.js\" async></script>",
+			"<script src=\"js/main.js\" async></script>",
+			"",
+			"css/icons",
+			"icon-bubble",
+			"icon-feed",
+			"class=\"icon-",
+			"code",
+			"<img src=\"img/planetarium-shows.jpg\" alt=\"Planetarium Shows\" />",
+			"$this->type",
+			"$this->year",
+			"$this->month",
+			"\"./\"",
+			"events",
+			"",
+			"events",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 245.0
+	},
+	"project": "sudoku.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 248.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
