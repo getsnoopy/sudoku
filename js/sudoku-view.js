@@ -13,16 +13,63 @@
  *
  * @param {String} board DOM Selector for the board
  */
-var SudokuView = function( element ) {
+var SudokuView = function( element, game ) {
 
     /**
      * The DOM element that holds the board
+     *
      * @type {jQuery}
      */
     this.element = $( element );
+
+    /**
+     * The DOM element that holds the number picker
+     *
+     * @type {?jQuery}
+     */
+    this.numberPicker = null;
+
+    /**
+     * Holds a reference to the game object being used
+     *
+     * @type {Sudoku}
+     * @private
+     */
+    this._game = game;
+
+    // Initialization code
+    this.render();
 };
 
 $.extend( true, SudokuView.prototype, {
+
+    bindEvents: function() {
+        var _this = this;
+
+        // Handle clicking on board cells
+        this.element.on( 'click', '.grid table td.empty', function( event ) {
+            // Prevent bubbling
+            event.stopPropagation();
+
+            _this.showNumberPicker(
+                $( this ),
+                _this._game.getValidNumbers( _this._calculateArrayPosition( $( this ) ) )
+            );
+        });
+
+        // Handle clicking on number picker
+        this.element.on( 'click', '.number-picker td:not(.disabled)', function ( event ) {
+            // Prevent bubbling
+            event.stopPropagation();
+
+            var cell = $( this ).closest( '.number-picker' ).data( 'origin' );
+            var number = $( this ).text();
+
+            _this._game.update( _this._calculateArrayPosition( cell ), number );
+            _this.update( cell, number );
+            _this.hideNumberPicker();
+        });
+    },
 
     /**
      * Renders the board
@@ -30,7 +77,7 @@ $.extend( true, SudokuView.prototype, {
     render: function() {
         var i, j, cellRow, blockRow, block, table;
 
-        table = $( '<table/>' );
+        table = $( '<table class="grid"></table>' );
 
         // Blocks
         for( i = 0; i < 9; i++ ) {
@@ -39,7 +86,7 @@ $.extend( true, SudokuView.prototype, {
                 blockRow = $( '<tr/>' );
             }
 
-            block = $( '<table/>' );
+            block = $( '<table class="block"></table>' );
 
             // Cells in a block
             for( j = 0; j < 9; j++ ) {
@@ -49,7 +96,7 @@ $.extend( true, SudokuView.prototype, {
                 }
 
                 // Create cells
-                cellRow.append( $( '<td/>' ) );
+                cellRow.append( $( '<td/>' ).append( $( '<p/>' ) ) );
 
                 // Append row to block
                 if( (j + 1) % 3 === 0 ) {
@@ -67,15 +114,30 @@ $.extend( true, SudokuView.prototype, {
         }
 
         this.element.append( table );
+
+        // Generate number picker
+        if( !this.numberPicker ) {
+            var row;
+            this.numberPicker = $( '<table class="number-picker"></table>' );
+
+            for( var i = 0; i < 3; i++ ) {
+                row = $( '<tr/>' ).appendTo( this.numberPicker );
+                row.append( $( '<td/>' ).text( (3 * i) + 1 ) );
+                row.append( $( '<td/>' ).text( (3 * i) + 2 ) );
+                row.append( $( '<td/>' ).text( (3 * i) + 3 ) );
+            }
+
+            this.numberPicker.appendTo( this.element ).hide();
+        }
     },
 
     /**
-     * Populates the board with a given board array
+     * Populate the board with a given board array
      *
      * @param  {Array[]} board The array representation of the board
      */
     populate: function( board ) {
-        var i, j, cells, blocks = $( '#board table table' );
+        var i, j, cells, blocks = this.element.find( 'table table' );
 
         for( i = 0; i < blocks.length; i++ ) {
             cells = $( blocks[i] ).find( 'td' );
@@ -84,12 +146,82 @@ $.extend( true, SudokuView.prototype, {
 
                 // Skip empty cells
                 if( number == 0 ) {
+                    $( cells[j] ).addClass( 'empty' );
                     continue;
                 }
 
-                $( cells[j] ).text( number );
+                $( cells[j] ).find( 'p' ).text( number );
             }
         }
+
+        this.bindEvents();
+    },
+
+    /**
+     * Updates a cell on the board
+     *
+     * @param  {Object} cell   The cell on the board to update
+     * @param  {Number} number Number that the cell should be updated to
+     */
+    update: function( cell, number ) {
+        $( cell ).find( 'p' ).text( number );
+    },
+
+    /**
+     * Shows the number picker at a specified cell
+     *
+     * @param  {jQuery} cell The cell where the number picker should originate
+     */
+    showNumberPicker: function( cell, validNumbers ) {
+        var _this = this;
+
+        // Store where the number picker was shown
+        this.numberPicker.data( 'origin', cell );
+
+        // If validNumbers is provided, disable invalid numbers
+        if( validNumbers ) {
+            var isValid;
+            this.numberPicker.find( 'td' ).each( function() {
+                isValid = validNumbers.betterIndexOf( parseInt( $( this ).text() ) ) !== -1;
+                $( this ).toggleClass( 'disabled', !isValid );
+            });
+        }
+
+        // Show number picker
+        this.numberPicker.appendTo( cell ).fadeIn( 'fast' );
+
+        // Hide number picker when clicked outside of it
+        $( document ).on( 'click.numberPicker', ':not(.number-picker)', function( event ) {
+            // Prevent bubbling
+            event.stopPropagation();
+
+            _this.hideNumberPicker();
+        });
+    },
+
+    /**
+     * Hides the number picker
+     */
+    hideNumberPicker: function() {
+        this.numberPicker.fadeOut( 'fast' );
+
+        // Stop listening to click events on document
+        $( document ).off( 'click.numberPicker' );
+    },
+
+    /**
+     * Calculates array position based given a cell from the DOM
+     * @param  {jQuery} cell Board cell from the DOM
+     * @return {Object}      Corresponding array position of the cell
+     */
+    _calculateArrayPosition: function( cell ) {
+        var position = { r: 0, c: 0 };
+
+        // Calculate array position
+        position.r = cell.closest( 'tr' ).index() + (3 * cell.closest( '.block' ).closest( 'tr' ).index());
+        position.c = cell.index() + (3 * cell.closest( '.block' ).closest( 'td' ).index());
+
+        return position;
     }
 
 });

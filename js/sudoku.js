@@ -109,7 +109,7 @@ $.extend( true, Sudoku.prototype, {
 
         for( i = 0; i < solution.length; i++ ) {
             // Check format and dimensions
-            if( !(solution[i] instanceof Array && solution[i].length === 9) ){
+            if( !(solution[i] instanceof Array && solution[i].length === 9) ) {
                 return false;
             }
 
@@ -117,17 +117,69 @@ $.extend( true, Sudoku.prototype, {
             // Note: Not using strict equals to because we want to ignore type inconsistencies.
             for( j = 0; j < solution[i].length; j++ ) {
                 // Empty value
-                if( solution[i][j] == 0 ){
+                if( solution[i][j] == 0 ) {
                     return false;
                 }
 
-                if( solution[i][j] != this.solution[i][j] ){
+                if( solution[i][j] != this.solution[i][j] ) {
                     return false;
                 }
             }
         }
 
         return true;
+    },
+
+    /**
+     * Updates the board at specified position with number.
+     *
+     * @param  {Object} position The position to update
+     * @param  {Number} number   The number to update the position with
+     */
+    update: function( position, number ) {
+        this.board[position.r][position.c] = number;
+    },
+
+    getValidNumbers: function( position ) {
+        var i, index, validNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        // Check row
+        for( i = 0; i < this.board[position.r].length; i++ ) {
+            if( this.board[position.r][i] != 0 ) {
+                // Remove number that's been used from the valid numbers
+                // Note: Converting array items to numbers to make types compatible
+                index = validNumbers.betterIndexOf( +this.board[position.r][i] );
+                if( index !== -1 ) {
+                    validNumbers.splice( index, 1 );
+                }
+            }
+        }
+
+        // Check column
+        for( i = 0; i < this.board.length; i++ ) {
+            if( this.board[i][position.c] != 0 ) {
+                // Remove number that's been used from the valid numbers
+                // Note: Converting array items to numbers to make types compatible
+                index = validNumbers.betterIndexOf( +this.board[i][position.c] );
+                if( index !== -1 ) {
+                    validNumbers.splice( index, 1 );
+                }
+            }
+        }
+
+        // Check block
+        for( i = 0; i < this.board.length; i++ ) {
+            if( this.board[i][position.c] != 0 ) {
+                // Remove number that's been used from the valid numbers
+                // Note: Converting array items to numbers to make types compatible
+                index = validNumbers.betterIndexOf( +this.board[i][position.c] );
+                if( index !== -1 ) {
+                    validNumbers.splice( index, 1 );
+                }
+            }
+        }
+
+        return validNumbers;
     }
 
 });

@@ -115,49 +115,96 @@ h2 {
 }
 
 #board {
+    position: relative;
     max-width: 28em;
     margin: 2% auto;
 }
 
-#board > table {
+#board > table.grid {
+    border-collapse: collapse;
+    transition: all .2s ease;
+}
+
+#board > table.grid > * > tr {
     border: 3px solid #aaa;
+}
+
+#board > table.grid > * > tr > td {
+    border: 3px solid #aaa;
+}
+
+#board > table.grid table.block {
     border-collapse: collapse;
 }
 
-#board > table > * > tr {
-    border: 3px solid #aaa;
-}
-
-#board > table > * > tr > td {
-    border: 3px solid #aaa;
-}
-
-#board > table table {
-    border-collapse: collapse;
-}
-
-#board > table table td {
+#board > table.grid table.block > * > tr > td {
+    position: relative;
     min-width: 3rem;
     min-height: 3rem;
     height: 3rem;
     font-size: 1.8rem;
     text-align: center;
+    color: rgba( 0, 0, 0, 0.5 );
     border-color: #dddddd;
     border-width: 0 2px 2px 0;
     border-style: dashed;
+    cursor: default;
+    transition: all .2s ease;
+}
+
+#board > table.grid table.block > * > tr > td.empty {
+    color: rgba( 0, 0, 0, 1 );
     cursor: pointer;
 }
 
-#board > table table td:hover {
+#board > table.grid table.block > * > tr > td.empty:hover {
     background-color: #eaeaea;
 }
 
-#board > table table tr > td:last-of-type {
+#board > table.grid table.block > * > tr > td:last-of-type {
     border-right-width: 0;
 }
 
-#board > table table tr:last-of-type > td {
+#board > table.grid table.block > * > tr:last-of-type > td {
     border-bottom-width: 0;
+}
+
+#board > table.grid p {
+    margin: 0;
+    padding: 0;
+}
+
+#board > table.grid table.number-picker {
+    position: absolute;
+    top: -25%;
+    left: -25%;
+    background-color: #555;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    border-collapse: collapse;
+    z-index: 25;
+}
+
+#board > table.grid table.number-picker td {
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #eee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#board > table.grid table.number-picker td:not(.disabled):hover {
+    background-color: rgba( 255, 255, 255, 0.15 );
+}
+
+#board > table.grid table.number-picker td.disabled {
+    color: #777;
+    cursor: default;
 }
 
 /* ==========================================================================
