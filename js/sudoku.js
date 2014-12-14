@@ -140,8 +140,13 @@ $.extend( true, Sudoku.prototype, {
         this.board[position.r][position.c] = number;
     },
 
+    /**
+     * Gets a list of valid numbers that can be played in a certain board position
+     * @param  {Object} position The position on the board
+     * @return {[type]}          An array of valid numbers
+     */
     getValidNumbers: function( position ) {
-        var i, index, validNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var i, j, index, validNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
         // Check row
         for( i = 0; i < this.board[position.r].length; i++ ) {
@@ -168,13 +173,19 @@ $.extend( true, Sudoku.prototype, {
         }
 
         // Check block
-        for( i = 0; i < this.board.length; i++ ) {
-            if( this.board[i][position.c] != 0 ) {
-                // Remove number that's been used from the valid numbers
-                // Note: Converting array items to numbers to make types compatible
-                index = validNumbers.betterIndexOf( +this.board[i][position.c] );
-                if( index !== -1 ) {
-                    validNumbers.splice( index, 1 );
+        var beginRow = position.r - (position.r % 3),
+            beginCol = position.c - (position.c % 3),
+            endRow = beginRow + 2,
+            endCol = beginCol + 2;
+        for( i = beginRow; i <= endRow; i++ ) {
+            for( j = beginCol; j <= endCol; j++ ) {
+                if( this.board[i][j] != 0 ) {
+                    // Remove number that's been used from the valid numbers
+                    // Note: Converting array items to numbers to make types compatible
+                    index = validNumbers.betterIndexOf( +this.board[i][j] );
+                    if( index !== -1 ) {
+                        validNumbers.splice( index, 1 );
+                    }
                 }
             }
         }
