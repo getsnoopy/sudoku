@@ -166,7 +166,7 @@ $.extend( true, SudokuView.prototype, {
         // Generate number picker
         if( !this.numberPicker ) {
             var row;
-            this.numberPicker = $( '<table class="number-picker"></table>' );
+            this.numberPicker = $( '<table class="number-picker grow"></table>' );
 
             for( var i = 0; i < 3; i++ ) {
                 row = $( '<tr class="np-row"></tr>' ).appendTo( this.numberPicker );
@@ -174,8 +174,6 @@ $.extend( true, SudokuView.prototype, {
                 row.append( $( '<td/>' ).text( (3 * i) + 2 ) );
                 row.append( $( '<td/>' ).text( (3 * i) + 3 ) );
             }
-
-            this.numberPicker.appendTo( this.board ).hide();
         }
     },
 
@@ -271,7 +269,8 @@ $.extend( true, SudokuView.prototype, {
         }
 
         // Show number picker
-        this.numberPicker.appendTo( cell ).fadeIn( 'fast' );
+        this.numberPicker.appendTo( cell );
+        setTimeout( function() { _this.numberPicker.addClass( 'hover' ) }, 0 );
 
         // Hide number picker when clicked outside of it
         $( document ).on( 'click.numberPicker', ':not(.number-picker)', function ( event ) {
@@ -286,9 +285,7 @@ $.extend( true, SudokuView.prototype, {
      * Hides the number picker
      */
     hideNumberPicker: function() {
-        this.numberPicker.fadeOut( 'fast', function() {
-            $( this ).detach();
-        });
+        this.numberPicker.removeClass( 'hover' );
 
         // Stop listening to click events on document
         $( document ).off( 'click.numberPicker' );
