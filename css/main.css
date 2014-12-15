@@ -197,7 +197,6 @@ h2 {
     opacity: 0;
     border: none;
     border-radius: 0 0 0 1rem;
-    -webkit-appearance: none;
     transition: 0s all ease;
 }
 
@@ -267,6 +266,27 @@ h2 {
 #game > .board > .finished-overlay > span {
     vertical-align: middle;
     font-size: 3rem;
+}
+
+#game > .controls button {
+    position: relative;
+    margin: 0 1rem;
+    padding: 0.4rem 0.8rem;
+    background: #efefef;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba( 0, 0, 0, 0.4 );
+    outline: none;
+}
+
+#game > .controls button:hover {
+    box-shadow: 0 0 5px 1px rgba( 0, 0, 0, 0.4 );
+}
+
+#game > .controls button:active {
+    top: 1px;
+    left: 1px;
+    box-shadow: 0 0 0 1px rgba( 0, 0, 0, 0.2 );
 }
 
 /* ==========================================================================
