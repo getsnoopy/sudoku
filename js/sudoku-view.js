@@ -242,14 +242,14 @@ $.extend( true, SudokuView.prototype, {
         this.board.find( 'table.grid table.block td > p' ).text( '' );
 
         // Hide finish message
-        this.board.find( '.finished-overlay' ).fadeOut();
+        this.board.find( '.finished-overlay' ).toggleClass( 'invisible', true );
     },
 
     /**
      * Prepares the view when a game is finished
      */
     finish: function() {
-        this.board.find( '.finished-overlay' ).fadeIn();
+        this.board.find( '.finished-overlay' ).toggleClass( 'invisible', false );
     },
 
     /**
