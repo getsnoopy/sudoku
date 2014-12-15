@@ -3,7 +3,7 @@
  * Author: Varun Varada
  */
 
-(function( window ) {
+(function ( window ) {
 
 // Enable strict mode
 'use strict';
@@ -13,7 +13,7 @@
  *
  * @param {String} board DOM Selector for the board
  */
-var SudokuView = function( element, game ) {
+var SudokuView = function ( element, game ) {
 
     /**
      * The DOM element that holds the board
@@ -37,17 +37,27 @@ var SudokuView = function( element, game ) {
      */
     this._game = game;
 
+    /**
+     * Keeps track of whether the view has been initialized
+     *
+     * @type {Boolean}
+     */
+    this.initialized = false;
+
     // Initialization code
     this.render();
 };
 
 $.extend( true, SudokuView.prototype, {
 
+    /**
+     * Binds UI controls to event handlers
+     */
     bindEvents: function() {
         var _this = this;
 
         // Handle clicking on board cells
-        this.element.on( 'click', '.grid table td.fillable', function( event ) {
+        this.element.on( 'click', '.grid table td.fillable', function ( event ) {
             // Prevent bubbling
             event.stopPropagation();
 
@@ -68,6 +78,9 @@ $.extend( true, SudokuView.prototype, {
             _this._game.update( _this._calculateArrayPosition( cell ), number );
             _this.update( cell, number );
             _this.hideNumberPicker();
+            if( _this._game.isSolved() ) {
+                _this.finish();
+            }
         });
 
         // Handle clicking on clear button
@@ -79,6 +92,17 @@ $.extend( true, SudokuView.prototype, {
 
             _this._game.clear( _this._calculateArrayPosition( cell ) );
             _this.clear( cell );
+        });
+
+        // Handle clicking on restart button
+        this.element.on( 'click', '[data-action="restart"]', function() {
+            _this._game.reset();
+            _this.reset();
+        });
+
+        // Handle clicking on new game button
+        this.element.on( 'click', '[data-action="new"]', function() {
+            _this.populate( _this._game.generate() );
         });
     },
 
@@ -107,7 +131,10 @@ $.extend( true, SudokuView.prototype, {
                 }
 
                 // Create cells
-                cellRow.append( $( '<td/>' ).append( $( '<p/>' ) ).append( $( '<button>×</button>' ) ) );
+                cellRow.append( $( '<td/>' )
+                    .append( $( '<p/>' ) )
+                    .append( $( '<button>×</button>' ) )
+                );
 
                 // Append row to block
                 if( (j + 1) % 3 === 0 ) {
@@ -124,7 +151,7 @@ $.extend( true, SudokuView.prototype, {
             }
         }
 
-        this.element.append( table );
+        this.element.prepend( table );
 
         // Generate number picker
         if( !this.numberPicker ) {
@@ -132,7 +159,7 @@ $.extend( true, SudokuView.prototype, {
             this.numberPicker = $( '<table class="number-picker"></table>' );
 
             for( var i = 0; i < 3; i++ ) {
-                row = $( '<tr/>' ).appendTo( this.numberPicker );
+                row = $( '<tr class="np-row"></tr>' ).appendTo( this.numberPicker );
                 row.append( $( '<td/>' ).text( (3 * i) + 1 ) );
                 row.append( $( '<td/>' ).text( (3 * i) + 2 ) );
                 row.append( $( '<td/>' ).text( (3 * i) + 3 ) );
@@ -147,25 +174,31 @@ $.extend( true, SudokuView.prototype, {
      *
      * @param  {Array[]} board The array representation of the board
      */
-    populate: function( board ) {
-        var i, j, cells, blocks = this.element.find( 'table table' );
+    populate: function ( board ) {
+        var i, j, cells, number, blocks = this.element.find( 'table.grid table.block' );
 
         for( i = 0; i < blocks.length; i++ ) {
-            cells = $( blocks[i] ).find( 'td' );
+            cells = $( blocks[i] ).find( 'tr:not(.np-row) > td' );
             for( j = 0; j < cells.length; j++ ) {
-                var number = board[ (3 * Math.floor( i / 3)) + Math.floor( j / 3 ) ][ (3 * (i % 3)) + (j % 3) ];
+                number = board[ (3 * Math.floor( i / 3)) + Math.floor( j / 3 ) ][ (3 * (i % 3)) + (j % 3) ];
 
-                // Skip empty cells
+                $( cells[j] ).toggleClass( 'fillable', number == 0 );
+                $( cells[j] ).removeClass( 'filled' );
+
+                // Handle empty cells
                 if( number == 0 ) {
-                    $( cells[j] ).addClass( 'fillable' );
-                    continue;
+                    number = '';
                 }
 
                 $( cells[j] ).find( 'p' ).text( number );
             }
         }
 
-        this.bindEvents();
+        if( !this.initialized ) {
+            this.bindEvents();
+        }
+
+        this.initialized = true;
     },
 
     /**
@@ -174,9 +207,9 @@ $.extend( true, SudokuView.prototype, {
      * @param  {jQuery} cell   The cell on the board to update
      * @param  {Number} number Number that the cell should be updated to
      */
-    update: function( cell, number ) {
+    update: function ( cell, number ) {
         cell = $( cell );
-        cell.find( 'p' ).text( number );
+        cell.find( 'p' ).text( number || '' );
         cell.toggleClass( 'filled', number != 0 );
     },
 
@@ -185,17 +218,28 @@ $.extend( true, SudokuView.prototype, {
      *
      * @param  {jQuery} cell The cell on the board
      */
-    clear: function( cell ) {
-        $( cell ).find( 'p' ).text( '' );
-        cell.toggleClass( 'filled', false );
+    clear: function ( cell ) {
+        this.update( cell, 0 );
     },
+
+    /**
+     * Resets the board to its initial state
+     */
+    reset: function() {
+        this.populate( this._game.getBoard() );
+    },
+
+    /**
+     * Prepares the view when a game is finished
+     */
+    finish: function() {},
 
     /**
      * Shows the number picker at a specified cell
      *
      * @param  {jQuery} cell The cell where the number picker should originate
      */
-    showNumberPicker: function( cell, validNumbers ) {
+    showNumberPicker: function ( cell, validNumbers ) {
         var _this = this;
 
         // If validNumbers is provided, disable invalid numbers
@@ -211,7 +255,7 @@ $.extend( true, SudokuView.prototype, {
         this.numberPicker.appendTo( cell ).fadeIn( 'fast' );
 
         // Hide number picker when clicked outside of it
-        $( document ).on( 'click.numberPicker', ':not(.number-picker)', function( event ) {
+        $( document ).on( 'click.numberPicker', ':not(.number-picker)', function ( event ) {
             // Prevent bubbling
             event.stopPropagation();
 
@@ -223,7 +267,9 @@ $.extend( true, SudokuView.prototype, {
      * Hides the number picker
      */
     hideNumberPicker: function() {
-        this.numberPicker.fadeOut( 'fast' );
+        this.numberPicker.fadeOut( 'fast', function() {
+            $( this ).detach();
+        });
 
         // Stop listening to click events on document
         $( document ).off( 'click.numberPicker' );
@@ -231,10 +277,11 @@ $.extend( true, SudokuView.prototype, {
 
     /**
      * Calculates array position based given a cell from the DOM
+     *
      * @param  {jQuery} cell Board cell from the DOM
      * @return {Object}      Corresponding array position of the cell
      */
-    _calculateArrayPosition: function( cell ) {
+    _calculateArrayPosition: function ( cell ) {
         var position = { r: 0, c: 0 };
 
         // Calculate array position

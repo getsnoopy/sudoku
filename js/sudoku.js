@@ -3,7 +3,7 @@
  * Author: Varun Varada
  */
 
-(function( window ) {
+(function ( window ) {
 
 // Enable strict mode
 'use strict';
@@ -12,6 +12,12 @@
  * Instantiates a new Sudoku board
  */
 var Sudoku = function() {
+
+    /**
+     * Multidimensional array that holds the initial board state
+     * @type {Array}
+     */
+    this.initialBoard = [];
 
     /**
      * Multidimensional array that holds the current board state
@@ -31,6 +37,7 @@ $.extend( true, Sudoku.prototype, {
 
     /**
      * Gets the current board
+     *
      * @return {Array[]} The current board
      */
     getBoard: function() {
@@ -39,6 +46,7 @@ $.extend( true, Sudoku.prototype, {
 
     /**
      * Gets the current board's solution
+     *
      * @return {Array[]} The current board's solution
      */
     getSolution: function() {
@@ -55,7 +63,7 @@ $.extend( true, Sudoku.prototype, {
         var i;
 
         // Initialize board
-        this.board = [
+        /*this.board = [
             '5 3 0 ' + '0 7 0 ' + '0 0 0',
             '6 0 0 ' + '1 9 5 ' + '0 0 0',
             '0 9 8 ' + '0 0 0 ' + '0 6 0',
@@ -67,10 +75,26 @@ $.extend( true, Sudoku.prototype, {
             '0 6 0 ' + '0 0 0 ' + '2 8 0',
             '0 0 0 ' + '4 1 9 ' + '0 0 5',
             '0 0 0 ' + '0 8 0 ' + '0 7 9'
+        ];*/
+        this.board = [
+            '5 3 4 ' + '6 7 8 ' + '9 1 2',
+            '6 7 2 ' + '1 9 5 ' + '3 4 8',
+            '1 9 8 ' + '3 4 2 ' + '5 6 7',
+
+            '8 5 9 ' + '7 6 1 ' + '4 2 3',
+            '4 2 6 ' + '8 5 3 ' + '7 9 1',
+            '7 1 3 ' + '9 2 4 ' + '8 5 6',
+
+            '9 6 1 ' + '5 3 7 ' + '2 8 4',
+            '2 8 7 ' + '4 1 9 ' + '6 3 5',
+            '3 4 5 ' + '2 8 6 ' + '1 7 0'
         ];
         for ( i = 0; i < this.board.length; i++ ) {
             this.board[i] = this.board[i].split( ' ' );
         };
+
+        // Keep a copy of the initial board
+        this.initialBoard = $.extend( true, [], this.board );
 
         // Initialize corresponding solution
         this.solution = [
@@ -96,32 +120,23 @@ $.extend( true, Sudoku.prototype, {
     /**
      * Checks whether the provided solution is correct
      * Note: Assumes puzzles have unique solutions, which is true in 99.99% of the cases.
-     * @param  {Array} solution
+     *
+     * @param  {Array}    board
      * @return {Boolean}          Whether the provided solution is correct or not
      */
-    checkSolution: function( solution ) {
+    isSolved: function() {
         var i, j;
 
-        // Check format and dimensions
-        if( !(solution instanceof Array && solution.length === 9) ) {
-            return false;
-        }
-
-        for( i = 0; i < solution.length; i++ ) {
-            // Check format and dimensions
-            if( !(solution[i] instanceof Array && solution[i].length === 9) ) {
-                return false;
-            }
-
+        for( i = 0; i < this.board.length; i++ ) {
             // Verify values
             // Note: Not using strict equals to because we want to ignore type inconsistencies.
-            for( j = 0; j < solution[i].length; j++ ) {
+            for( j = 0; j < this.board[i].length; j++ ) {
                 // Empty value
-                if( solution[i][j] == 0 ) {
+                if( this.board[i][j] == 0 ) {
                     return false;
                 }
 
-                if( solution[i][j] != this.solution[i][j] ) {
+                if( this.board[i][j] != this.solution[i][j] ) {
                     return false;
                 }
             }
@@ -136,7 +151,7 @@ $.extend( true, Sudoku.prototype, {
      * @param  {Object} position The position to update
      * @param  {Number} number   The number to update the position with
      */
-    update: function( position, number ) {
+    update: function ( position, number ) {
         this.board[position.r][position.c] = number;
     },
 
@@ -145,8 +160,15 @@ $.extend( true, Sudoku.prototype, {
      *
      * @param  {Object} position The position to clear
      */
-    clear: function( position ) {
+    clear: function ( position ) {
         this.board[position.r][position.c] = 0;
+    },
+
+    /**
+     * Resets the board to its initial state
+     */
+    reset: function() {
+        this.board = $.extend( true, [], this.initialBoard );
     },
 
     /**
@@ -155,7 +177,7 @@ $.extend( true, Sudoku.prototype, {
      * @param  {Object} position The position on the board
      * @return {Array}          An array of valid numbers
      */
-    getValidNumbers: function( position ) {
+    getValidNumbers: function ( position ) {
         var i, j, index, validNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
         // Check row

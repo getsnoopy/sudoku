@@ -121,12 +121,15 @@ h2 {
 }
 
 #board > table.grid {
+    margin: 10px 0 20px;
     border-collapse: collapse;
+    border-style: hidden;
+    border-radius: 2px;
+    box-shadow: 0 0 0 3px #aaa;
     transition: all .2s ease;
 }
 
 #board > table.grid > * > tr {
-    border: 3px solid #aaa;
 }
 
 #board > table.grid > * > tr > td {
