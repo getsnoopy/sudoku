@@ -152,12 +152,12 @@ h2 {
     transition: all .2s ease;
 }
 
-#board > table.grid table.block > * > tr > td.empty {
+#board > table.grid table.block > * > tr > td.fillable {
     color: rgba( 0, 0, 0, 1 );
     cursor: pointer;
 }
 
-#board > table.grid table.block > * > tr > td.empty:hover {
+#board > table.grid table.block > * > tr > td.fillable:hover {
     background-color: #eaeaea;
 }
 
@@ -172,6 +172,28 @@ h2 {
 #board > table.grid p {
     margin: 0;
     padding: 0;
+}
+
+#board > table.grid table.block td button {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0 0.1rem 0.15rem 0.25rem;
+    background: rgba( 0, 0, 0, 0.1 );
+    font-size: 1rem;
+    opacity: 0;
+    border: none;
+    border-radius: 0 0 0 1rem;
+    -webkit-appearance: none;
+    transition: 0s all ease;
+}
+
+#board > table.grid table.block td.filled:hover button {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.25s 0.3s all ease;
 }
 
 #board > table.grid table.number-picker {

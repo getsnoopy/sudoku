@@ -47,7 +47,7 @@ $.extend( true, SudokuView.prototype, {
         var _this = this;
 
         // Handle clicking on board cells
-        this.element.on( 'click', '.grid table td.empty', function( event ) {
+        this.element.on( 'click', '.grid table td.fillable', function( event ) {
             // Prevent bubbling
             event.stopPropagation();
 
@@ -62,12 +62,23 @@ $.extend( true, SudokuView.prototype, {
             // Prevent bubbling
             event.stopPropagation();
 
-            var cell = $( this ).closest( '.number-picker' ).data( 'origin' );
+            var cell = $( this ).closest( '.number-picker' ).closest( 'td' );
             var number = $( this ).text();
 
             _this._game.update( _this._calculateArrayPosition( cell ), number );
             _this.update( cell, number );
             _this.hideNumberPicker();
+        });
+
+        // Handle clicking on clear button
+        this.element.on( 'click', '.grid table td.fillable.filled button', function ( event ) {
+            // Prevent bubbling
+            event.stopPropagation();
+
+            var cell = $( this ).closest( 'td' );
+
+            _this._game.clear( _this._calculateArrayPosition( cell ) );
+            _this.clear( cell );
         });
     },
 
@@ -96,7 +107,7 @@ $.extend( true, SudokuView.prototype, {
                 }
 
                 // Create cells
-                cellRow.append( $( '<td/>' ).append( $( '<p/>' ) ) );
+                cellRow.append( $( '<td/>' ).append( $( '<p/>' ) ).append( $( '<button>×</button>' ) ) );
 
                 // Append row to block
                 if( (j + 1) % 3 === 0 ) {
@@ -146,7 +157,7 @@ $.extend( true, SudokuView.prototype, {
 
                 // Skip empty cells
                 if( number == 0 ) {
-                    $( cells[j] ).addClass( 'empty' );
+                    $( cells[j] ).addClass( 'fillable' );
                     continue;
                 }
 
@@ -160,11 +171,23 @@ $.extend( true, SudokuView.prototype, {
     /**
      * Updates a cell on the board
      *
-     * @param  {Object} cell   The cell on the board to update
+     * @param  {jQuery} cell   The cell on the board to update
      * @param  {Number} number Number that the cell should be updated to
      */
     update: function( cell, number ) {
-        $( cell ).find( 'p' ).text( number );
+        cell = $( cell );
+        cell.find( 'p' ).text( number );
+        cell.toggleClass( 'filled', number != 0 );
+    },
+
+    /**
+     * Clears a cell on the board
+     *
+     * @param  {jQuery} cell The cell on the board
+     */
+    clear: function( cell ) {
+        $( cell ).find( 'p' ).text( '' );
+        cell.toggleClass( 'filled', false );
     },
 
     /**
@@ -174,9 +197,6 @@ $.extend( true, SudokuView.prototype, {
      */
     showNumberPicker: function( cell, validNumbers ) {
         var _this = this;
-
-        // Store where the number picker was shown
-        this.numberPicker.data( 'origin', cell );
 
         // If validNumbers is provided, disable invalid numbers
         if( validNumbers ) {

@@ -141,9 +141,19 @@ $.extend( true, Sudoku.prototype, {
     },
 
     /**
+     * Clears a position on the board
+     *
+     * @param  {Object} position The position to clear
+     */
+    clear: function( position ) {
+        this.board[position.r][position.c] = 0;
+    },
+
+    /**
      * Gets a list of valid numbers that can be played in a certain board position
+     *
      * @param  {Object} position The position on the board
-     * @return {[type]}          An array of valid numbers
+     * @return {Array}          An array of valid numbers
      */
     getValidNumbers: function( position ) {
         var i, j, index, validNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
