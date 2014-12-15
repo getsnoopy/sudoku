@@ -271,7 +271,7 @@ $.extend( true, SudokuView.prototype, {
 
         // Show number picker
         this.numberPicker.appendTo( cell );
-        setTimeout( function() { _this.numberPicker.addClass( 'hover' ) }, 0 );
+        setTimeout( function() { _this.numberPicker.addClass( 'hover' ) }, 50 );
 
         // Hide number picker when clicked outside of it
         $( document ).on( 'click.numberPicker', ':not(.number-picker)', function ( event ) {
