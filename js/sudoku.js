@@ -14,6 +14,20 @@
 var Sudoku = function() {
 
     /**
+     * Holds the size (n) of the current board, where the board is (n x n)
+     *
+     * @type {Number}
+     */
+    this.boardSize = 0;
+
+    /**
+     * Holds the number of currently filled cells on the board
+     *
+     * @type {Number}
+     */
+    this.filledCells = 0;
+
+    /**
      * Multidimensional array that holds the initial board state
      *
      * @type {Array}
@@ -65,6 +79,9 @@ $.extend( true, Sudoku.prototype, {
     generate: function() {
         var i;
 
+        // Set board size
+        this.boardSize = 9;
+
         // Initialize board
         this.board = [
             '5 3 0 ' + '0 7 0 ' + '0 0 0',
@@ -79,9 +96,12 @@ $.extend( true, Sudoku.prototype, {
             '0 0 0 ' + '4 1 9 ' + '0 0 5',
             '0 0 0 ' + '0 8 0 ' + '0 7 9'
         ];
-        for ( i = 0; i < this.board.length; i++ ) {
+        for ( i = 0; i < this.boardSize; i++ ) {
             this.board[i] = this.board[i].split( ' ' );
         };
+
+        // Set number of filled cells
+        this.filledCells = 30;
 
         // Keep a copy of the initial board
         this.initialBoard = $.extend( true, [], this.board );
@@ -100,7 +120,7 @@ $.extend( true, Sudoku.prototype, {
             '2 8 7 ' + '4 1 9 ' + '6 3 5',
             '3 4 5 ' + '2 8 6 ' + '1 7 9'
         ];
-        for ( i = 0; i < this.solution.length; i++ ) {
+        for ( i = 0; i < this.boardSize; i++ ) {
             this.solution[i] = this.solution[i].split( ' ' );
         };
 
@@ -116,6 +136,11 @@ $.extend( true, Sudoku.prototype, {
      */
     isSolved: function() {
         var i, j;
+
+        // Check whether all cells have been filled
+        if( this.filledCells !== Math.pow( this.boardSize, 2 ) ) {
+            return false;
+        }
 
         for( i = 0; i < this.board.length; i++ ) {
             // Verify values
@@ -142,6 +167,13 @@ $.extend( true, Sudoku.prototype, {
      * @param  {Number} number   The number to update the position with
      */
     update: function ( position, number ) {
+        // Update filled cells count
+        if( this.board[position.row][position.column] == 0 && number != 0 ) {
+            ++this.filledCells;
+        } else if( this.board[position.row][position.column] != 0 && number == 0 ) {
+            --this.filledCells;
+        }
+
         this.board[position.row][position.column] = number;
     },
 
@@ -151,7 +183,7 @@ $.extend( true, Sudoku.prototype, {
      * @param  {Object} position The position to clear
      */
     clear: function ( position ) {
-        this.board[position.row][position.column] = 0;
+        this.update( position, 0 );
     },
 
     /**
