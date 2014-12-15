@@ -165,10 +165,13 @@ $.extend( true, Sudoku.prototype, {
     },
 
     /**
-     * Resets the board to its initial state
+     * Resets the board to its initial state and returns it
+     *
+     * @return {Array[]} The reset board
      */
     reset: function() {
         this.board = $.extend( true, [], this.initialBoard );
+        return this.board;
     },
 
     /**

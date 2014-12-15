@@ -17,7 +17,7 @@ Array.prototype.betterIndexOf = function ( needle ) {
 
 $( document ).ready( function() {
     var game = new Sudoku();
-    var view = new SudokuView( '#board', game );
+    var view = new SudokuView( '#game', game );
 
     view.populate( game.generate() );
 

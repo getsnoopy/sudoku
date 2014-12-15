@@ -16,11 +16,17 @@
 var SudokuView = function ( element, game ) {
 
     /**
-     * The DOM element that holds the board
+     * The DOM element that holds UI interface
      *
      * @type {jQuery}
      */
     this.element = $( element );
+
+    /**
+     * The DOM element that holds the board
+     * @type {[type]}
+     */
+    this.board = this.element.find( '.board' );
 
     /**
      * The DOM element that holds the number picker
@@ -45,7 +51,8 @@ var SudokuView = function ( element, game ) {
     this.initialized = false;
 
     // Initialization code
-    this.render();
+    this._render();
+    this.reset();
 };
 
 $.extend( true, SudokuView.prototype, {
@@ -57,7 +64,7 @@ $.extend( true, SudokuView.prototype, {
         var _this = this;
 
         // Handle clicking on board cells
-        this.element.on( 'click', '.grid table td.fillable', function ( event ) {
+        this.board.on( 'click', '.grid table td.fillable', function ( event ) {
             // Prevent bubbling
             event.stopPropagation();
 
@@ -68,7 +75,7 @@ $.extend( true, SudokuView.prototype, {
         });
 
         // Handle clicking on number picker
-        this.element.on( 'click', '.number-picker td:not(.disabled)', function ( event ) {
+        this.board.on( 'click', '.number-picker td:not(.disabled)', function ( event ) {
             // Prevent bubbling
             event.stopPropagation();
 
@@ -84,7 +91,7 @@ $.extend( true, SudokuView.prototype, {
         });
 
         // Handle clicking on clear button
-        this.element.on( 'click', '.grid table td.fillable.filled button', function ( event ) {
+        this.board.on( 'click', '.grid table td.fillable.filled button', function ( event ) {
             // Prevent bubbling
             event.stopPropagation();
 
@@ -95,21 +102,24 @@ $.extend( true, SudokuView.prototype, {
         });
 
         // Handle clicking on restart button
-        this.element.on( 'click', '[data-action="restart"]', function() {
-            _this._game.reset();
+        this.element.on( 'click', 'button[data-action="restart"]', function() {
             _this.reset();
+            _this.populate( _this._game.reset() );
         });
 
         // Handle clicking on new game button
-        this.element.on( 'click', '[data-action="new"]', function() {
+        this.element.on( 'click', 'button[data-action="new"]', function() {
+            _this.reset();
             _this.populate( _this._game.generate() );
         });
     },
 
     /**
      * Renders the board
+     *
+     * @private
      */
-    render: function() {
+    _render: function() {
         var i, j, cellRow, blockRow, block, table;
 
         table = $( '<table class="grid"></table>' );
@@ -151,7 +161,7 @@ $.extend( true, SudokuView.prototype, {
             }
         }
 
-        this.element.prepend( table );
+        this.board.prepend( table );
 
         // Generate number picker
         if( !this.numberPicker ) {
@@ -165,7 +175,7 @@ $.extend( true, SudokuView.prototype, {
                 row.append( $( '<td/>' ).text( (3 * i) + 3 ) );
             }
 
-            this.numberPicker.appendTo( this.element ).hide();
+            this.numberPicker.appendTo( this.board ).hide();
         }
     },
 
@@ -175,7 +185,7 @@ $.extend( true, SudokuView.prototype, {
      * @param  {Array[]} board The array representation of the board
      */
     populate: function ( board ) {
-        var i, j, cells, number, blocks = this.element.find( 'table.grid table.block' );
+        var i, j, cells, number, blocks = this.board.find( 'table.grid table.block' );
 
         for( i = 0; i < blocks.length; i++ ) {
             cells = $( blocks[i] ).find( 'tr:not(.np-row) > td' );
@@ -223,16 +233,25 @@ $.extend( true, SudokuView.prototype, {
     },
 
     /**
-     * Resets the board to its initial state
+     * Resets the board to a fresh state
      */
     reset: function() {
-        this.populate( this._game.getBoard() );
+        // Hide number picker
+        this.hideNumberPicker();
+
+        // Clear board
+        this.board.find( 'table.grid table.block td > p' ).text( '' );
+
+        // Hide finish message
+        this.board.find( '.finished-overlay' ).fadeOut();
     },
 
     /**
      * Prepares the view when a game is finished
      */
-    finish: function() {},
+    finish: function() {
+        this.board.find( '.finished-overlay' ).fadeIn();
+    },
 
     /**
      * Shows the number picker at a specified cell
