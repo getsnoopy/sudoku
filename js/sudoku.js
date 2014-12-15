@@ -15,18 +15,21 @@ var Sudoku = function() {
 
     /**
      * Multidimensional array that holds the initial board state
+     *
      * @type {Array}
      */
     this.initialBoard = [];
 
     /**
      * Multidimensional array that holds the current board state
+     *
      * @type {Array}
      */
     this.board = [];
 
     /**
      * Multidimensional array that holds the current board's solution
+     *
      * @type {Array}
      */
     this.solution = [];
@@ -139,7 +142,7 @@ $.extend( true, Sudoku.prototype, {
      * @param  {Number} number   The number to update the position with
      */
     update: function ( position, number ) {
-        this.board[position.r][position.c] = number;
+        this.board[position.row][position.column] = number;
     },
 
     /**
@@ -148,7 +151,7 @@ $.extend( true, Sudoku.prototype, {
      * @param  {Object} position The position to clear
      */
     clear: function ( position ) {
-        this.board[position.r][position.c] = 0;
+        this.board[position.row][position.column] = 0;
     },
 
     /**
@@ -171,11 +174,11 @@ $.extend( true, Sudoku.prototype, {
         var i, j, index, validNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
         // Check row
-        for( i = 0; i < this.board[position.r].length; i++ ) {
-            if( this.board[position.r][i] != 0 ) {
+        for( i = 0; i < this.board[position.row].length; i++ ) {
+            if( this.board[position.row][i] != 0 ) {
                 // Remove number that's been used from the valid numbers
                 // Note: Converting array items to numbers to make types compatible
-                index = validNumbers.betterIndexOf( +this.board[position.r][i] );
+                index = validNumbers.betterIndexOf( +this.board[position.row][i] );
                 if( index !== -1 ) {
                     validNumbers.splice( index, 1 );
                 }
@@ -184,10 +187,10 @@ $.extend( true, Sudoku.prototype, {
 
         // Check column
         for( i = 0; i < this.board.length; i++ ) {
-            if( this.board[i][position.c] != 0 ) {
+            if( this.board[i][position.column] != 0 ) {
                 // Remove number that's been used from the valid numbers
                 // Note: Converting array items to numbers to make types compatible
-                index = validNumbers.betterIndexOf( +this.board[i][position.c] );
+                index = validNumbers.betterIndexOf( +this.board[i][position.column] );
                 if( index !== -1 ) {
                     validNumbers.splice( index, 1 );
                 }
@@ -195,8 +198,8 @@ $.extend( true, Sudoku.prototype, {
         }
 
         // Check block
-        var beginRow = position.r - (position.r % 3),
-            beginCol = position.c - (position.c % 3),
+        var beginRow = position.row - (position.row % 3),
+            beginCol = position.column - (position.column % 3),
             endRow = beginRow + 2,
             endCol = beginCol + 2;
         for( i = beginRow; i <= endRow; i++ ) {

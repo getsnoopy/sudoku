@@ -24,6 +24,7 @@ var SudokuView = function ( element, game ) {
 
     /**
      * The DOM element that holds the board
+     *
      * @type {[type]}
      */
     this.board = this.element.find( '.board' );
@@ -259,7 +260,7 @@ $.extend( true, SudokuView.prototype, {
     showNumberPicker: function ( cell, validNumbers ) {
         var _this = this;
 
-        // If validNumbers is provided, disable invalid numbers
+        // If validNumbers is provided, disable all invalid numbers
         if( validNumbers ) {
             var isValid;
             this.numberPicker.find( 'td' ).each( function() {
@@ -298,11 +299,11 @@ $.extend( true, SudokuView.prototype, {
      * @return {Object}      Corresponding array position of the cell
      */
     _calculateArrayPosition: function ( cell ) {
-        var position = { r: 0, c: 0 };
+        var position = { row: 0, column: 0 };
 
         // Calculate array position
-        position.r = cell.closest( 'tr' ).index() + (3 * cell.closest( '.block' ).closest( 'tr' ).index());
-        position.c = cell.index() + (3 * cell.closest( '.block' ).closest( 'td' ).index());
+        position.row = cell.closest( 'tr' ).index() + (3 * cell.closest( '.block' ).closest( 'tr' ).index());
+        position.column = cell.index() + (3 * cell.closest( '.block' ).closest( 'td' ).index());
 
         return position;
     }

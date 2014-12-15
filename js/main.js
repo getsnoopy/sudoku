@@ -3,7 +3,6 @@
  * Author: Varun Varada
  */
 
-
 // Weirdly, a for loop is apparently significantly faster than the native Array.indexOf()
 // http://jsperf.com/thor-indexof-vs-for/5
 Array.prototype.betterIndexOf = function ( needle ) {
@@ -20,6 +19,4 @@ $( document ).ready( function() {
     var view = new SudokuView( '#game', game );
 
     view.populate( game.generate() );
-
-    window.game = game;
 });
